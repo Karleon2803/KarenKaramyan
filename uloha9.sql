@@ -1,21 +1,10 @@
-SELECT 
-    f1.*
-FROM 
-    flourmills_sales f1
-WHERE 
-    EXISTS (
-        SELECT 
-            1
-        FROM 
-            flourmills_sales f2
-        WHERE 
-            f2.product_name = f1.product_name
-        GROUP BY 
-            f2.product_name
-        HAVING 
-            COUNT(DISTINCT EXTRACT(MONTH FROM f2.sale_date)) > 1
-    );
+SELECT
+p.category.
+AVG(o.discount) AS avg_discount
+FROM products p
+JOIN orders o ON p.product_id = o.product_id
+GROUP BY p.category;
 
 git add .
-git commit -m " uloha 3 "
+git commit -m " uloha 9 "
 git push

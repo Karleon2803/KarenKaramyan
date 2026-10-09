@@ -1,20 +1,11 @@
-SELECT 
-    product_category,
-    total_sales
-FROM (
-    SELECT 
-        product_category,
-        SUM(total_amount) AS total_sales
-    FROM 
-        flourmills_sales
-    GROUP BY 
-        product_category
-) AS category_summary
-WHERE 
-    total_sales > 50000000
-ORDER BY 
-    total_sales DESC;
+SELECT
+c.customer_name,
+o.order_id,
+o.sales
+FROM customers c
+FULLJOIN orders o ON c.customer_id = o.customer_id;
 
-    git add .
-git commit -m " uloha 3 "
+
+git add .
+git commit -m " uloha 6 "
 git push

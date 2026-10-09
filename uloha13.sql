@@ -1,19 +1,15 @@
-SELECT DISTINCT 
-    f1.product_category
-FROM 
-    flourmills_sales f1
-WHERE 
-    NOT EXISTS (
-        SELECT 
-            1
-        FROM 
-            flourmills_sales f2
-        WHERE 
-            f2.product_category = f1.product_category
-            AND f2.total_amount > 500000
-    );
-
+SELECT
+c.customer_name,
+SUM(o.sales) AS total sales,
+AVG(o.discount) AS avg_discount,
+COUNT(o.order_id) AS order_count.
+CASE
+WHEN SUM(o.sales) > 2500 THEN 'VIP'
+ELSE 'REGULAR'
+END AS customer_type
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
 
 git add .
-git commit -m " uloha 3 "
+git commit -m " uloha 13 "
 git push
