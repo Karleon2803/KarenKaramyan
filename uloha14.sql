@@ -1,5 +1,5 @@
 SELECT DISTINCT 
-    f1.product_category
+    f1.region
 FROM 
     flourmills_sales f1
 WHERE 
@@ -9,9 +9,10 @@ WHERE
         FROM 
             flourmills_sales f2
         WHERE 
-            f2.product_category = f1.product_category
-            AND f2.total_amount > 500000
+            f2.region = f1.region
+            AND f2.product_category = 'Flour'
     );
+
 
 
 git add .

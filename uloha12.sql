@@ -1,11 +1,19 @@
-SELECT
-c.region,
-COUNT(CASE WHEN o.sales > 1000 THEN 1 END) AS high_value_orders,
-COUNT(CASE WHEN o.sales <= 1000 THEN 1 END) A5 low_value_orders
-FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.region;
+SELECT 
+    f1.*
+FROM 
+    flourmills_sales f1
+WHERE 
+    EXISTS (
+        SELECT 
+            1
+        FROM 
+            flourmills_sales f2
+        WHERE 
+            f2.region = f1.region
+            AND EXTRACT(YEAR FROM f2.sale_date) = 2024
+    );
+
 
 git add .
-git commit -m " uloha 12 "
+git commit -m " uloha 3 "
 git push

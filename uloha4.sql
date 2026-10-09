@@ -1,11 +1,10 @@
-SELECT c.region,
-CASE WHEN SUM(o.sales) IS NULL THEN O
-ELSE SUM(o.sales)
-END AS total_sales
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-GROUP BY c.region;
+SELECT 
+    product_name,
+    total_amount,
+    total_amount / (SELECT SUM(total_amount) FROM flourmills_sales) AS amount_share
+FROM 
+    flourmills_sales;
 
 git add .
-git commit -m " uloha 4 "
+git commit -m " uloha 3 "
 git push

@@ -1,13 +1,18 @@
-SELECT
-p.product_name,
-CASE
-WHEN SUMio sales) IS NULL THEN O
-ELSE SUM(o.sales)
-END AS total sales
-FROM products o
-LEFT JOIN orders o ON p.product id = o.product id
-GROUP BY p.product_name;
+SELECT 
+    month,
+    monthly_sales
+FROM (
+    SELECT 
+        EXTRACT(MONTH FROM sale_date) AS month,
+        SUM(total_amount) AS monthly_sales
+    FROM 
+        flourmills_sales
+    GROUP BY 
+        EXTRACT(MONTH FROM sale_date)
+) AS subquery
+ORDER BY 
+    monthly_sales DESC;
 
 git add .
-git commit -m " uloha 5 "
+git commit -m " uloha 3 "
 git push
